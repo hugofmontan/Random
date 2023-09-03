@@ -18,8 +18,6 @@ def create_barchart(df):
 
     tickers = ['BTC', 'ETH', 'LDO', 'MATIC', 'ARB', 'LINK', 'SOL', 'OP', 'STX', 'DYDX', 'PRIME']
 
-    df = df.drop('Datetime', axis=1)
-
     for i in tickers: 
         df[i] = df[i].pct_change().add(1).cumprod().sub(1) * 100
 

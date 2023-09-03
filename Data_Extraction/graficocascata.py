@@ -20,7 +20,6 @@ def create_waterfall_chart(df1):
     df1.iloc[0] = pd.to_numeric(df1.iloc[0], errors='coerce')
     
     # Remove the 'Total' column
-    df1 = df1.drop(columns=['Datetime'])
     df1 = df1.drop(columns=['Total'])
     
     # Sort columns by their absolute values in descending order

@@ -27,7 +27,7 @@ def create_assets_returns(df):
     fig = go.Figure()
 
     for i in tickers:
-        fig.add_trace(go.Scatter(x=df['Datetime'], y=df[i], mode='lines',name=i))
+        fig.add_trace(go.Scatter(x=df.index, y=df[i], mode='lines',name=i))
 
     # Configure layout of the non-empty plot
     fig.update_layout(
