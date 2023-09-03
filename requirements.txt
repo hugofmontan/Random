@@ -1,4 +1,4 @@
-dash==1.21.0
+dash==2.0.0
 dash-core-components==1.21.0
 dash-html-components==1.21.0
 flask==2.1.1
