@@ -18,12 +18,13 @@ def create_barchart(df):
 
     tickers = ['BTC', 'ETH', 'LDO', 'MATIC', 'ARB', 'LINK', 'SOL', 'OP', 'STX', 'DYDX', 'PRIME']
 
+    df = df.drop('Datetime', axis=1)
+
     for i in tickers: 
         df[i] = df[i].pct_change().add(1).cumprod().sub(1) * 100
 
     df = df.iloc[-1]
-    df = df.round(decimals=2)
-    text_values = [f'{value:.2f}%' for value in df]
+    text_values = [f'{value:.2f}%' for value in df.round(2)]
 
     # Create a Plotly bar chart for the last performance
     fig = go.Figure(go.Bar(
