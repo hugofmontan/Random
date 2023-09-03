@@ -1,6 +1,5 @@
 import dash
-from dash import dcc
-from dash import html
+from dash import *
 import dash_bootstrap_components as dbc
 from dash_bootstrap_components import Container
 import plotly.graph_objects as go
@@ -14,10 +13,8 @@ from Data_Extraction.barchart import create_barchart
 import time
 
 # Read CSV files and define tickers
-df = pd.read_csv('dadosgerais.csv')
-calculate_cumulative_returns()
+df = calculate_cumulative_returns()
 dx = assets_prices()
-dx = pd.read_csv('prices.csv')
 waterfall_chart = create_waterfall_chart(df)
 tickers = ['BTC-USD', 'ETH-USD', 'LDO-USD', 'MATIC-USD', 'ARB11841-USD', 'LINK-USD', 'SOL-USD', 'OP-USD', 'STX4847-USD', 'DYDX-USD', 'PRIME23711-USD']
 
@@ -41,27 +38,7 @@ app.layout = dbc.Container([
     ], className='dash-row'),  # Add custom class for styling
 ])
 
-server = app.server
-
-@app.callback(
-    dash.dependencies.Output('portfolio-returns-plot', 'figure'),
-    dash.dependencies.Output('waterfall-chart', 'figure'),
-    dash.dependencies.Output('assets-returns-plot', 'figure'),
-    dash.dependencies.Output('barchart', 'figure'),
-    dash.dependencies.Input('interval-component', 'n_intervals')
-)
-def update_graphs(n):
-    calculate_cumulative_returns()
-    dx = assets_prices()
-    df = pd.read_csv('dadosgerais.csv')
-    waterfall_chart = create_waterfall_chart(df)
-    tickers = ['BTC-USD', 'ETH-USD', 'LDO-USD', 'MATIC-USD', 'ARB11841-USD', 'LINK-USD', 'SOL-USD', 'OP-USD', 'STX4847-USD', 'DYDX-USD', 'PRIME23711-USD']
-
-    portfolio_returns_plot = create_portfolio_returns_plot(df, tickers)
-    assets_returns_plot = create_assets_returns(dx)
-    barchart = create_barchart(dx)
-
-    return portfolio_returns_plot, waterfall_chart, assets_returns_plot, barchart
-
 if __name__ == "__main__":
-    app.run_server(debug=True)
+    while True:
+        app.run_server(debug=True)
+        time.sleep(60)
