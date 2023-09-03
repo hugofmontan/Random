@@ -24,7 +24,7 @@ def create_barchart(df):
     df_filtered = df_renamed[tickers]
     
     for ticker in tickers:
-        df_filtered[ticker] = (df_filtered[ticker].pct_change() + 1).cumprod().sub(1) * 100
+        df_filtered.loc[:, ticker] = (df_filtered[ticker].pct_change() + 1).cumprod().sub(1) * 100
     
     last_row = df_filtered.iloc[-1]
     text_values = [f'{value:.2f}%' for value in last_row]
