@@ -10,7 +10,7 @@ def create_portfolio_returns_plot(df, tickers):
 
     # Create a Plotly scatter plot for the non-empty plot
     fig = go.Figure()
-    fig.add_trace(go.Scatter(x=df.index, y=df['Total'], line_color='#623AD7', mode='lines'))
+    fig.add_trace(go.Scatter(x=df['Datetime'], y=df['Total'], line_color='#623AD7', mode='lines'))
 
     # Configure layout of the non-empty plot
     fig.update_layout(
@@ -42,4 +42,3 @@ def create_portfolio_returns_plot(df, tickers):
     
     fig.update_yaxes(zeroline=True, zerolinecolor='black', zerolinewidth=1)
     return fig
-
